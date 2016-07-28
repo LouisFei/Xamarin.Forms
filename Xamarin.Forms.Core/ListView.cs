@@ -122,6 +122,10 @@ namespace Xamarin.Forms
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets a Boolean value that indicates whether this ListView element has uneven rows.
+        /// 命名和描述挺难以难解的，反正True表示所有的项的高度会自动高度根据内容自动计算，此时RowHeight属性将无效。
+        /// </summary>
 		public bool HasUnevenRows
 		{
 			get { return (bool)GetValue(HasUnevenRowsProperty); }
