@@ -4,6 +4,13 @@ using System.Linq;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// Xamarin.Forms MessagingCenter enables view models and other components to communicate with 
+    /// without having to know anything about each other besides a simple Message contract.
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/guides/xamarin-forms/messaging-center/
+    /// </remarks>
 	public static class MessagingCenter
 	{
 		static readonly Dictionary<Tuple<string, Type, Type>, List<Tuple<WeakReference, Action<object, object>>>> s_callbacks =
