@@ -113,8 +113,14 @@ namespace Xamarin.Forms
 
 		public event EventHandler LayoutChanged;
 
+        /// <summary>
+        /// 界面出现时引发的事件
+        /// </summary>
 		public event EventHandler Appearing;
 
+        /// <summary>
+        /// 界面消失时引发的事件
+        /// </summary>
 		public event EventHandler Disappearing;
 
 		public Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
