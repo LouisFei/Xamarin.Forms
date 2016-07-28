@@ -4,6 +4,12 @@ using Xamarin.Forms.Platform;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// An element capable of scrolling if its Content requires.
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.ScrollView/
+    /// </remarks>
 	[ContentProperty("Content")]
 	[RenderWith(typeof(_ScrollViewRenderer))]
 	public class ScrollView : Layout, IScrollViewController
