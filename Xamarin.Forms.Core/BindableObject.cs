@@ -7,7 +7,30 @@ using Xamarin.Forms.Internals;
 
 namespace Xamarin.Forms
 {
-	public abstract class BindableObject : INotifyPropertyChanged, IDynamicResourceHandler
+    /// <summary>
+    /// Provides a mechanism by which application developers can propagate changes that are made to data in one object to another, 
+    /// by enabling validation, type coercion, and an event system. BindableProperty.
+    /// 提供一个机制让开发者能够传递改变(数据从一个对象到另一个)通过开启的验证，？？？
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.BindableObject/
+    /// The BindableObject class provides a data storage mechanism that enables the application developer to synchronize data between objects in response to changes, 
+    /// 提供一种数据存储机制让开发者能够在多个对象间同步数据在变更响应中，
+    /// for example, between the View and View Model in the MVVM design pattern. 
+    /// 例如，在View和ViewModel中。
+    /// All of the visual elements in the Xamarin.Forms namespace inherit from BindableObject class, 
+    /// 所有的可视化元素都继承自BindableObject类，
+    /// so they can all be used to bind the data behind their user interface elements to View Models that are supplied by the application developer.
+    /// 
+    /// To bind the data behind a property in a BindableObject, typically a view, to a property in the View Model, application developers should do the following.
+    /// First, the developer creates a pair of properties on the view, 
+    /// one of which is a BindableProperty, and the other of which is a property of whatever type is required.
+    /// In the code below, MockBindableObject stands in for what would typically be a user interface object in production code.
+    /// Application developers should note the use of BindableObject.SetValue(BindableProperty, Object) 
+    /// and BindableObject.GetValue to get and set the value on the bound property; 
+    /// The property of the desired type provides the interface that the target of the bound property will implement.
+    /// </remarks>
+    public abstract class BindableObject : INotifyPropertyChanged, IDynamicResourceHandler
 	{
 		public static readonly BindableProperty BindingContextProperty = BindableProperty.Create("BindingContext", typeof(object), typeof(BindableObject), default(object), BindingMode.OneWay, null,
 			BindingContextPropertyBindingPropertyChanged, null, null, BindingContextPropertyBindingChanging);
