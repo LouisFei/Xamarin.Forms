@@ -26,6 +26,13 @@
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// Defines an interface for elements that can be animated.
+    /// 为能够实现动画效果的元素定义接口
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.IAnimatable/
+    /// </remarks>
 	public interface IAnimatable
 	{
 		void BatchBegin();

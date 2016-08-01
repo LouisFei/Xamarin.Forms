@@ -30,6 +30,12 @@ using Xamarin.Forms.Internals;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// Extension methods for Animation.
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.AnimationExtensions/
+    /// </remarks>
 	public static class AnimationExtensions
 	{
 		static readonly Dictionary<AnimatableKey, Info> s_animations;
@@ -41,6 +47,20 @@ namespace Xamarin.Forms
 			s_kinetics = new Dictionary<AnimatableKey, int>();
 		}
 
+        /// <summary>
+        /// 停止动画
+        /// Stops the animation.
+        /// </summary>
+        /// <remarks>
+        /// If handle refers to an animation that belongs to this Xamarin.Forms.IAnimatable instance, 
+        /// then its tweener handlers are removed, the tweener is stopped, 
+        /// the animation is removed from this Xamarin.Forms.IAnimatable instance, and it is marked as finished.
+        /// If handle refers to one of the kinetics that belong to this Xamarin.Forms.IAnimatable instance, 
+        /// then it and its ticker are removed.
+        /// </remarks>
+        /// <param name="self"></param>
+        /// <param name="handle"></param>
+        /// <returns></returns>
 		public static bool AbortAnimation(this IAnimatable self, string handle)
 		{
 			var key = new AnimatableKey(self, handle);
@@ -68,18 +88,56 @@ namespace Xamarin.Forms
 			return true;
 		}
 
+        /// <summary>
+        /// 设置动画参数，并开始动画。
+        /// Sets the specified parameters and starts the animation.
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="name"></param>
+        /// <param name="animation"></param>
+        /// <param name="rate"></param>
+        /// <param name="length"></param>
+        /// <param name="easing"></param>
+        /// <param name="finished"></param>
+        /// <param name="repeat"></param>
 		public static void Animate(this IAnimatable self, string name, Animation animation, uint rate = 16, uint length = 250, Easing easing = null, Action<double, bool> finished = null,
 								   Func<bool> repeat = null)
 		{
 			self.Animate(name, animation.GetCallback(), rate, length, easing, finished, repeat);
 		}
 
+        /// <summary>
+        /// 设置动画参数，并开始动画。
+        /// Sets the specified parameters and starts the animation.
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="name"></param>
+        /// <param name="callback"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="rate"></param>
+        /// <param name="length"></param>
+        /// <param name="easing"></param>
+        /// <param name="finished"></param>
+        /// <param name="repeat"></param>
 		public static void Animate(this IAnimatable self, string name, Action<double> callback, double start, double end, uint rate = 16, uint length = 250, Easing easing = null,
 								   Action<double, bool> finished = null, Func<bool> repeat = null)
 		{
 			self.Animate(name, Interpolate(start, end), callback, rate, length, easing, finished, repeat);
 		}
 
+        /// <summary>
+        /// 设置动画参数，并开始动画。
+        /// Sets the specified parameters and starts the animation.
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="name"></param>
+        /// <param name="callback"></param>
+        /// <param name="rate"></param>
+        /// <param name="length"></param>
+        /// <param name="easing"></param>
+        /// <param name="finished"></param>
+        /// <param name="repeat"></param>
 		public static void Animate(this IAnimatable self, string name, Action<double> callback, uint rate = 16, uint length = 250, Easing easing = null, Action<double, bool> finished = null,
 								   Func<bool> repeat = null)
 		{
@@ -109,7 +167,15 @@ namespace Xamarin.Forms
 			}
 		}
 
-
+        /// <summary>
+        /// Sets the specified parameters and starts the kinetic animation.
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="name"></param>
+        /// <param name="callback"></param>
+        /// <param name="velocity"></param>
+        /// <param name="drag"></param>
+        /// <param name="finished"></param>
 		public static void AnimateKinetic(this IAnimatable self, string name, Func<double, double, bool> callback, double velocity, double drag, Action finished = null)
 		{
 			Action animate = () => AnimateKineticInternal(self, name, callback, velocity, drag, finished);
@@ -124,12 +190,26 @@ namespace Xamarin.Forms
 			}
 		}
 
+        /// <summary>
+        /// Returns a Boolean value that indicates whether or not the animation that is specified by handle is running.
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="handle"></param>
+        /// <returns></returns>
 		public static bool AnimationIsRunning(this IAnimatable self, string handle)
 		{
 			var key = new AnimatableKey(self, handle);
 			return s_animations.ContainsKey(key);
 		}
 
+        /// <summary>
+        /// Returns a function that performs a linear interpolation between start and end.
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="reverseVal"></param>
+        /// <param name="reverse"></param>
+        /// <returns></returns>
 		public static Func<double, double> Interpolate(double start, double end = 1.0f, double reverseVal = 0.0f, bool reverse = false)
 		{
 			double target = reverse ? reverseVal : end;

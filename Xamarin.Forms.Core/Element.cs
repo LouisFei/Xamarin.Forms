@@ -9,6 +9,15 @@ using Xamarin.Forms.Internals;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// Provides the base class for all Forms hierarchal elements. This class contains all the methods and properties required to represent an element in the Forms hierarchy.
+    /// 为所有的Forms层级元素提供一个基类。这个类包含在Forms层级中一个需要所需要显示所有的方法和属性。
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.Element/
+    /// 
+    /// https://developer.xamarin.com/api/resource?id=source-id:9:Element.Hierarchy.png
+    /// </remarks>
 	public abstract class Element : BindableObject, IElement, INameScope, IElementController
 	{
 		internal static readonly ReadOnlyCollection<Element> EmptyChildren = new ReadOnlyCollection<Element>(new Element[0]);
