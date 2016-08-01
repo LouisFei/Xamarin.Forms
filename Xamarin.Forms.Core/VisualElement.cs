@@ -4,6 +4,13 @@ using Xamarin.Forms.Internals;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// A Element that occupies an area on the screen, has a visual appearance, and can obtain touch input.
+    /// 一个在屏幕上占据了一块区域的元素，它有一个可视化的外观，并且能够获得触摸输入。
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.VisualElement/
+    /// </remarks>
 	public partial class VisualElement : Element, IAnimatable, IVisualElementController, IResourcesProvider
 	{
 		internal static readonly BindablePropertyKey NavigationPropertyKey = BindableProperty.CreateReadOnly("Navigation", typeof(INavigation), typeof(VisualElement), default(INavigation));
@@ -144,6 +151,11 @@ namespace Xamarin.Forms
 			get { return (IList<Behavior>)GetValue(BehaviorsProperty); }
 		}
 
+        /// <summary>
+        /// 边界
+        /// The bounds of an element, in device-independent units.
+        /// Bounds is assigned during the Layout cycle by a call to VisualElement.Layout(Rectangle).
+        /// </summary>
 		public Rectangle Bounds
 		{
 			get { return new Rectangle(X, Y, Width, Height); }
@@ -218,24 +230,40 @@ namespace Xamarin.Forms
 			set { SetValue(OpacityProperty, value); }
 		}
 
+        /// <summary>
+        /// 按Z轴旋转
+        /// Gets or sets the rotation about the Z-axis (affine rotation) when the element is rendered.
+        /// </summary>
 		public double Rotation
 		{
 			get { return (double)GetValue(RotationProperty); }
 			set { SetValue(RotationProperty, value); }
 		}
 
+        /// <summary>
+        /// 按X轴旋转
+        /// Gets or sets the rotation about the X-axis (perspective rotation) when the element is rendered.
+        /// </summary>
 		public double RotationX
 		{
 			get { return (double)GetValue(RotationXProperty); }
 			set { SetValue(RotationXProperty, value); }
 		}
 
+        /// <summary>
+        /// 按Y轴旋转
+        /// Gets or sets the rotation about the Y-axis (perspective rotation) when the element is rendered.
+        /// </summary>
 		public double RotationY
 		{
 			get { return (double)GetValue(RotationYProperty); }
 			set { SetValue(RotationYProperty, value); }
 		}
 
+        /// <summary>
+        /// 缩放比例因素
+        /// Gets or sets the scale factor applied to the element.
+        /// </summary>
 		public double Scale
 		{
 			get { return (double)GetValue(ScaleProperty); }

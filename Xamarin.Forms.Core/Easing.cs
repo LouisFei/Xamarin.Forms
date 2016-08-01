@@ -28,23 +28,79 @@ using System;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// Functions that modify values non-linearly, generally used for animations.
+    /// 缓动，非线性地修改值的方法，通常用于动画。
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.Easing/
+    /// Easing functions are applied to input values in the range [0,1]. 
+    /// The cubic easing functions are often considered to look most natural.
+    /// If developers wish to use their own easing functions, 
+    /// they should return a value of 0 for an input of 0 and a value of 1 for an input of 1 or the animation will have a jump.
+    /// </remarks>
 	public class Easing
 	{
+        /// <summary>
+        /// Linear transformation.
+        /// 线性的，匀速。
+        /// </summary>
 		public static readonly Easing Linear = new Easing(x => x);
 
+        /// <summary>
+        /// Smoothly decelerates.
+        /// 平滑地减速。
+        /// </summary>
 		public static readonly Easing SinOut = new Easing(x => Math.Sin(x * Math.PI * 0.5f));
+        /// <summary>
+        /// Smoothly accelerates.
+        /// 平滑地加速。
+        /// </summary>
 		public static readonly Easing SinIn = new Easing(x => 1.0f - Math.Cos(x * Math.PI * 0.5f));
+        /// <summary>
+        /// Accelerates in and out.
+        /// 平滑加速，再平滑减速。
+        /// </summary>
 		public static readonly Easing SinInOut = new Easing(x => -Math.Cos(Math.PI * x) / 2.0f + 0.5f);
 
+        /// <summary>
+        /// Starts slowly and accelerates.
+        /// 开始时候很慢，并且在加速
+        /// </summary>
 		public static readonly Easing CubicIn = new Easing(x => x * x * x);
+        /// <summary>
+        /// Starts quickly and the decelerates.
+        /// 开始时候很快，并且在减速。
+        /// </summary>
 		public static readonly Easing CubicOut = new Easing(x => Math.Pow(x - 1.0f, 3.0f) + 1.0f);
 
+        /// <summary>
+        /// Accelerates and decelerates. Often a natural-looking choice.
+        /// 开始时候也很慢，先加速，再减速。通常是一个很自然的选择。
+        /// </summary>
 		public static readonly Easing CubicInOut = new Easing(x => x < 0.5f ? Math.Pow(x * 2.0f, 3.0f) / 2.0f : (Math.Pow((x - 1) * 2.0f, 3.0f) + 2.0f) / 2.0f);
 
+        /// <summary>
+        /// Leaps to final values, bounces 3 times, and settles.
+        /// 跳跃到指定值，弹跳3次，然后静止。
+        /// </summary>
 		public static readonly Easing BounceOut;
+
+        /// <summary>
+        /// Jumps towards, and then bounces as it settles at the final value.
+        /// 向前上下弹，越弹越低，最终静止下来。
+        /// </summary>
 		public static readonly Easing BounceIn;
 
+        /// <summary>
+        /// Moves away and then leaps toward the final value.
+        /// 反弹再加速。
+        /// </summary>
 		public static readonly Easing SpringIn = new Easing(x => x * x * ((1.70158f + 1) * x - 1.70158f));
+        /// <summary>
+        /// Overshoots and then returns.
+        /// 加速，超越后返回。
+        /// </summary>
 		public static readonly Easing SpringOut = new Easing(x => (x - 1) * (x - 1) * ((1.70158f + 1) * (x - 1) + 1.70158f) + 1);
 
 		readonly Func<double, double> _easingFunc;

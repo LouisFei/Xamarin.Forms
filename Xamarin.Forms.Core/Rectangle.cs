@@ -30,6 +30,12 @@ using System.Globalization;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// Struct defining a rectangle, using doubles.
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
 	[DebuggerDisplay("X={X}, Y={Y}, Width={Width}, Height={Height}")]
 	[TypeConverter(typeof(RectangleTypeConverter))]
 	public struct Rectangle

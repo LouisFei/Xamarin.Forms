@@ -3,12 +3,25 @@ using System.Threading.Tasks;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// Extension methods for Views, providing animatable scaling, rotation, and layout functions.
+    /// View的扩展方法，提供动画（缩放，旋转，移动）
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.ViewExtensions/
+    /// </remarks>
 	public static class ViewExtensions
 	{
+        /// <summary>
+        /// Aborts the TranslateTo, LayoutTo, RotateTo, ScaleTo, and FadeTo animations on view element.
+        /// 取消所有动画
+        /// </summary>
+        /// <param name="view"></param>
 		public static void CancelAnimations(VisualElement view)
 		{
 			if (view == null)
 				throw new ArgumentNullException("view");
+
 			view.AbortAnimation("LayoutTo");
 			view.AbortAnimation("TranslateTo");
 			view.AbortAnimation("RotateTo");
@@ -19,6 +32,14 @@ namespace Xamarin.Forms
 			view.AbortAnimation("SizeTo");
 		}
 
+        /// <summary>
+        /// 逐渐消失
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="opacity"></param>
+        /// <param name="length"></param>
+        /// <param name="easing"></param>
+        /// <returns></returns>
 		public static Task<bool> FadeTo(this VisualElement view, double opacity, uint length = 250, Easing easing = null)
 		{
 			if (view == null)
@@ -40,6 +61,14 @@ namespace Xamarin.Forms
 			return tcs.Task;
 		}
 
+        /// <summary>
+        /// 使用新布局
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="bounds"></param>
+        /// <param name="length"></param>
+        /// <param name="easing"></param>
+        /// <returns></returns>
 		public static Task<bool> LayoutTo(this VisualElement view, Rectangle bounds, uint length = 250, Easing easing = null)
 		{
 			if (view == null)
@@ -84,6 +113,14 @@ namespace Xamarin.Forms
 			return view.ScaleTo(view.Scale + dscale, length, easing);
 		}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="rotation"></param>
+        /// <param name="length"></param>
+        /// <param name="easing"></param>
+        /// <returns></returns>
 		public static Task<bool> RotateTo(this VisualElement view, double rotation, uint length = 250, Easing easing = null)
 		{
 			if (view == null)
