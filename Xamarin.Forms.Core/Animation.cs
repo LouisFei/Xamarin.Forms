@@ -30,6 +30,13 @@ using System.Collections.Generic;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// Encapsulates an animation, a collection of functions that modify properties over a user-perceptible time period.
+    /// 封装了一个动画，一个修改随时间周期用户可感知的属性的功能集合。
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.Animation/
+    /// </remarks>
 	public class Animation : IEnumerable
 	{
 		readonly List<Animation> _children;
