@@ -7,6 +7,13 @@ using Xamarin.Forms.Internals;
 
 namespace Xamarin.Forms
 {
+    /// <summary>
+    /// An ItemsView that displays a collection of data as a vertical list.
+    /// 以垂直列表的形式显示一个数据集合。
+    /// </summary>
+    /// <remarks>
+    /// https://developer.xamarin.com/api/type/Xamarin.Forms.ListView/
+    /// </remarks>
 	[RenderWith(typeof(_ListViewRenderer))]
 	public class ListView : ItemsView<Cell>, IListViewController
 
@@ -174,6 +181,10 @@ namespace Xamarin.Forms
 			set { SetValue(RowHeightProperty, value); }
 		}
 
+        /// <summary>
+        ///  Gets or sets the currently selected item from the ListView.ItemsSource.
+        ///  当前选中的项
+        /// </summary>
 		public object SelectedItem
 		{
 			get { return GetValue(SelectedItemProperty); }
@@ -270,12 +281,27 @@ namespace Xamarin.Forms
 
 		public event EventHandler<ItemVisibilityEventArgs> ItemDisappearing;
 
+        /// <summary>
+        /// Event that is raised when a new item is selected.
+        /// 选中事件
+        /// </summary>
 		public event EventHandler<SelectedItemChangedEventArgs> ItemSelected;
 
+        /// <summary>
+        /// Event that is raised when an item is tapped.
+        /// 轻敲事件
+        /// </summary>
 		public event EventHandler<ItemTappedEventArgs> ItemTapped;
 
 		public event EventHandler Refreshing;
 
+        /// <summary>
+        /// Scrolls the ListView to the item.
+        /// 滚动ListView到指定的项
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="position"></param>
+        /// <param name="animated"></param>
 		public void ScrollTo(object item, ScrollToPosition position, bool animated)
 		{
 			if (!Enum.IsDefined(typeof(ScrollToPosition), position))
@@ -288,6 +314,13 @@ namespace Xamarin.Forms
 				_pendingScroll = args;
 		}
 
+        /// <summary>
+        /// Scrolls the ListView to the item in the group
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="group"></param>
+        /// <param name="position"></param>
+        /// <param name="animated"></param>
 		public void ScrollTo(object item, object group, ScrollToPosition position, bool animated)
 		{
 			if (!IsGroupingEnabled)
